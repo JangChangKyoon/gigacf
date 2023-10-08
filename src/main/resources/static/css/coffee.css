@@ -1,0 +1,87 @@
+table {
+    width: 90%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+tr,th,td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+}
+
+tbody {font-size: small}
+
+tr:hover {background-color: #D6EEEE;}
+
+label{
+    padding: 5px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* 페이지 전체 스타일 */
+#main {
+    text-align: center;
+    font-size: large;
+}
+
+#search {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    width: 90%;
+    margin: 10px auto; /* 수직 중앙 정렬 및 위 아래 마진 조정 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 버튼 스타일 */
+input[type="submit"],
+button {
+    width: 80px;
+    height: 30px;
+    font-weight: bold;
+    font-size: medium;
+}
+
+/* 테이블 스타일 */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* 테이블 아래 마진 조정 */
+}
+
+.tr_td th,
+.tr_td td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+/* 헤더 스타일 */
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+/* 링크 스타일 */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 폼 스타일 */
+form {
+    margin: 0;
+    padding: 0;
+}
