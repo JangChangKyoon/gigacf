@@ -9,14 +9,14 @@
 
 	<select id="doList"
 		resultType="com.example.gigacf.v1.vo.Order_info">
-		SELECT no, coffee_no, coffee, price, cust_id, name,
+		SELECT no, coffee_no, coffee_name, coffee_price, cust_id, cust_name,
 		DATE_FORMAT(reg_day, '%Y.%m.%d') AS reg_day
 		FROM order_list;
 	</select>
 
 	<select id="doSearch"
 		resultType="com.example.gigacf.v1.vo.Order_info">
-		SELECT no, coffee_no, coffee, price, cust_id, name,
+		SELECT no, coffee_no, coffee_name, coffee_price, cust_id, cust_name,
 		DATE_FORMAT(reg_day, '%Y.%m.%d') AS reg_day
 		FROM order_list
 		WHERE 1=1
