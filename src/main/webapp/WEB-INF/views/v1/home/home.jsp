@@ -6,7 +6,7 @@
   <title>Coffee _ Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <link rel="stylesheet" type="text/css" href="/css/comm.css">
 
 </head>
@@ -41,7 +41,7 @@
       </p>
       </td>
       <td style="width:auto">
-        <img src="/img/Ship.PNG" style="width: 700px">
+        <img src="https://farm4.static.flickr.com/3214/2325663412_3150abe8e1.jpg" style="width: 700px">
       </td>
     </tr>
   </table>
@@ -51,7 +51,7 @@
 <!-- 푸터 위치 -->
 <div class="footer">
   <!--    https://www.w3schools.com/html/html_emojis.asp   -->
-  <h4>[Footer] <span style="font-size:30px;">&#9973;</span> Spring boot 항해 ~ with Me</h4>
+  <h4> <span style="font-size:30px;"></span>GIGA COFFEE</h4>
 </div>
 
 </body>

@@ -13,4 +13,18 @@ FROM coffee_menu
 
 </select>
 
+<insert id="orderSelectMenu"  >
+INSERT INTO order_list(coffee_name, coffee_price, cust_name, coffee_no, cust_id) VALUES
+    <foreach item="coffeeNo" index="index" collection="coffeeNoList" separator=","  nullable="true">
+        (
+            (SELECT coffee FROM coffee_menu WHERE no = #{coffeeNo}),
+            (SELECT price FROM coffee_menu WHERE no = #{coffeeNo}),
+            (SELECT name FROM cust_info WHERE no = 1),  
+            #{coffeeNo},
+            1
+        )
+    </foreach>
+</insert>
+<!-- CAST(#{item} as INTEGER) -->
+
 </mapper>

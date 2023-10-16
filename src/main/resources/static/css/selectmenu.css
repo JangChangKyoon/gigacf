@@ -11,16 +11,17 @@ $borderWidth: 2px;*/
   grid-template-rows: 10fr 10fr 25fr 35fr 35fr;
   grid-template-columns: 0.3fr repeat(4, 1fr);
   grid-auto-rows: 35fr;
-  height: 100vh;
+  min-height:100vh;
+  max-height: 500vh;
 }
 
-.order_body2 {
+.order_form {
   display: grid;
   background-color: black;
   grid-area: span 2 / span 4;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 3.5fr;
+  grid-auto-rows: 1fr;
   gap: 2px;
 }
 

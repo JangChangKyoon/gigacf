@@ -11,8 +11,6 @@
 	<title>Coffee Order List</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/css/comm.css">
-	<link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
 
@@ -25,21 +23,21 @@
 	<div id="main" style="font-size:large; text-align: center; ">
 
 		<div id="search"
-			style="height: 150px;padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
-			<h3>[ Coffee Order List <span style="font-size:30px;">&#128722;</span> ]</h3>
+			style=" font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
+			
 			<form name="fm_order" autocomplete="on" action="/v1/order_search" method="post">
 				<fieldset>
-					<legend> [검색조건] </legend>
-					<label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01"
-						max="2023-12-31">
-					- <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
+					
+					<input class="button is-primary is-inverted" type="date" id="start_date" name="start_date" min="2020-01-01"
+						max="2023-12-31" style=" color: hsl(0, 0%, 80%);">
+					- <input class="button is-primary is-inverted" type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31" style=" color: hsl(0, 0%, 80%);">
 					&nbsp;&nbsp;
-					<label>메뉴명</label> <input type="text" id="coffee" name="coffee">
+					<input  class="input is-primary" type="text" id="coffee" name="coffee" placeholder="메뉴명" style="color: hsl(0, 0%, 80%);width:15%;">
 					&nbsp;&nbsp;
-					<label>고객명</label> <input type="text" id="name" name="name">
-					</select>
-					&nbsp;&nbsp;<input type="submit" value="조회"
-						style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
+					 <input class="input is-primary" type="text" id="name" name="name" placeholder="고객명" style="color: hsl(0, 0%, 80%);width:15%;">
+			
+					&nbsp;&nbsp;<input class="button is-primary" type="submit" value="조회"
+						style="width: 80px;font-weight: bold; font-size: medium; color: white;">
 
 					<!-- <a href="javascript:loadDocArray()">test</a> -->
 					<!--        <label>CheckBox : </label><span id="idCheckBox"></span>-->
@@ -50,17 +48,17 @@
 		</div>
 
 
-		<table class="table">
+		<table style="width:100%" class="table">
 			<thead>
 				<tr class="tr_td">
-					<th>Chk</th>
-					<th>주문번호</th>
-					<th>커피No</th>
-					<th>메뉴명</th>
-					<th>가격</th>
-					<th>고객ID</th>
-					<th>고객명</th>
-					<th>주문일자</th>
+					<th style="text-align:center">Chk</th>
+					<th style="text-align:center">주문번호</th>
+					<th style="text-align:center">커피No</th>
+					<th style="text-align:center">메뉴명</th>
+					<th style="text-align:center">가격</th>
+					<th style="text-align:center">고객ID</th>
+					<th style="text-align:center">고객명</th>
+					<th style="text-align:center">주문일자</th>
 				</tr>
 			</thead>
 
@@ -70,14 +68,14 @@
 				
 				<%for(Order_info order_info : list){ %>
 				<tr >
-					<td><input type="checkbox" name="chkOrderNo" value="<%=order_info.getNo()%>"</td>
-					<td name="주문번호" ><%=order_info.getNo()%></td>
-					<td name="커피No" ><%=order_info.getNo()%></td>
-					<td name="메뉴명" ><%=order_info.getCoffee()%></td>
-					<td name="가격" ><%=order_info.getPrice()%></td>
-					<td name="고객ID" ><%=order_info.getCust_id()%></td>
-					<td name="고객명" ><%=order_info.getName()%></td>
-					<td name="주문일자" ><%=order_info.getReg_day()%></td>
+					<td style="text-align:center"><input type="checkbox" name="chkOrderNo" value="<%=order_info.getNo()%>"></td>
+					<td style="text-align:center" name="주문번호" ><%=order_info.getNo()%></td>
+					<td style="text-align:center" name="커피No" ><%=order_info.getNo()%></td>
+					<td style="text-align:center" name="메뉴명" ><%=order_info.getCoffee_name()%></td>
+					<td style="text-align:center" name="가격" ><%=order_info.getCoffee_price()%></td>
+					<td style="text-align:center" name="고객ID" ><%=order_info.getCust_id()%></td>
+					<td style="text-align:center" name="고객명" ><%=order_info.getCust_name()%></td>
+					<td style="text-align:center" name="주문일자" ><%=order_info.getReg_day()%></td>
 				</tr>
 				<% } %>
 

@@ -23,19 +23,19 @@
 
 <div id="main" style="font-size:large; text-align: center; ">
 
-    <div id="search" style="height: 150px;padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
-        <h3>[ Member Info <span style="font-size:30px;">&#128699;</span> ]</h3>
+    <div id="search" style="padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
+        
 
         <form name="fm_member" autocomplete="on" method="post" action="/v1/member_search">
             <fieldset>
-                <legend> [검색조건] </legend>
-                <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
-                - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
+                
+              <input style="color: hsl(0, 0%, 80%);" class="button is-primary is-inverted" type="date" id="start_date" name="start_date" min="2020-01-01" max="2023-12-31">
+                - <input style="color: hsl(0, 0%, 80%);" class="button is-primary is-inverted" type="date" id="end_date" name="end_date" min="2020-01-01" max="2023-12-31">
                 &nbsp;&nbsp;
-                <label>고객명</label> <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" placeholder="고객명" class="input is-primary" style="color: hsl(0, 0%, 80%);width: 15%;">
 
 
-                &nbsp;&nbsp;<input type="submit" value="조회"  style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
+                &nbsp;&nbsp;<input class="button is-primary" type="submit" value="조회"  style="width: 80px;font-weight: bold; font-size: medium; color: white;">
 
             </fieldset>
 
@@ -45,15 +45,15 @@
     </div>
 
 
-    <table class="table">
+    <table style="width:100%" class="table">
         <thead>
-        <tr class="tr_td">
-            <th>Chk</th>
-            <th>고객ID</th>
-            <th>고객명</th>
-            <th>이메일</th>
-            <th>권한</th>
-            <th>등록일</th>
+        <tr class="tr_td" >
+            <th style="text-align:center"><abbr  title="Position">Chk</abbr></th>
+            <th style="text-align:center">고객ID</th>
+            <th style="text-align:center">고객명</th>
+            <th style="text-align:center">연락처</th>
+            <th style="text-align:center">권한</th>
+            <th style="text-align:center">등록일</th>
         </tr>
         </thead>
 
@@ -62,12 +62,12 @@
         <!--- 데이타 출력 부분 -->
         <% for(Cust_info cust_info : list){ %>
         <tr >
-            <td ><input type="checkbox" name="chkMemberNo" value="<%=cust_info.getNo()%>">Chk</td>
-            <th name="고객ID"><%=cust_info.getNo()%></th>
-            <td name="고객명"><%=cust_info.getName()%></td>
-            <td name="이메일"><%=cust_info.getEmail()%></td>
-            <td name="권한"><%=cust_info.getRole()%></td>
-            <td name="등록일"><%=cust_info.getReg_day()%></td>
+            <td style="text-align:center"><input type="checkbox" name="chkMemberNo" value="<%=cust_info.getNo()%>"></td>
+            <th style="text-align:center" name="고객ID"><%=cust_info.getNo()%></th>
+            <td style="text-align:center" name="고객명"><%=cust_info.getName()%></td>
+            <td style="text-align:center" name="연락처"><%=cust_info.getPhone()%></td>
+            <td style="text-align:center" name="권한"><%=cust_info.getRole()%></td>
+            <td style="text-align:center" name="등록일"><%=cust_info.getReg_day()%></td>
         </tr>
         <% } %>
 

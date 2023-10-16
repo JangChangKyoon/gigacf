@@ -7,8 +7,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="/css/comm.css">
-	<link rel="stylesheet" type="text/css" href="/css/coffee.css">
 
 </head>
 
@@ -22,24 +20,25 @@
 
 		<div id="search"
 			style="height: 300px;padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
-			<h3>[ Coffee menu 등록 <span style="font-size:30px;">&#9749;</span> ]
+			
 			</h3>
 			<form name="fm_menu_ins" autocomplete="on" action="/v1/menu_ins" method="post">
-				<fieldset>
-					<legend> [커피 메뉴 등록] </legend>
+				<fieldset style="display:flex; flex-direction:column; align-items:center;gap:10px;">
+				
 					<!--Location of Input-->
-					<label>메뉴명</label> <input type="text" id="coffee" name="coffee"/></p>
-					<label>종 류 </label><select name="kind">
+					<input class="input is-primary" style="color: hsl(0, 0%, 80%);width:15%;" type="text" id="coffee" name="coffee" placeholder="메뉴명"/>
+					
+				<div class="select is-primary;" style="margin-bottom:5px;width:15%;">	<select style="height:40px;color: hsl(0, 0%, 80%);font-size:15px; " name="kind">
 						<option value="커피">커피</option>
 						<option value="논커피">논커피</option>
 						<option value="에이드">에이드</option>
-					</select>
-					</p>
-					&nbsp;&nbsp;
-					<label>가 격 </label><input type="number" name="price"></p>
+					</select></div>
+				
+					
+					<input style="color: hsl(0, 0%, 80%);width:15%;" class="input is-primary" type="number" name="price" placeholder="가격">
 
-					<input type="submit" value="메뉴 등록"
-						style="width: 100px;height: 30px;font-weight: bold; font-size: medium">
+					<input class="button is-primary" type="submit" value="메뉴 등록"
+						style="width: 80px;font-weight: bold; font-size: medium; color: white;">
 				</fieldset>
 			</form>
 		</div>
