@@ -3,9 +3,9 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-<div class="footer">
+<div style="margin-top:50px; display:flex; justify-content:center; align-items:center;" class="footer">
   <!--https://www.w3schools.com/html/html_emojis.asp -->
-  <h4>[Footer] <span style="font-size:30px;">&#9973;</span> Spring Cafe</h4>
+  <span style="font-size:30px;text-align:center;">Giga Cafe</span>
 </div>
 
 </html>
