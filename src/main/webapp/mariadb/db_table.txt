@@ -16,7 +16,7 @@ CREATE TABLE cust_info (
 	no INT(11) NOT NULL AUTO_INCREMENT,
 	cust_id VARCHAR(100) NOT NULL,
 	name VARCHAR(100) NOT NULL,
-	email VARCHAR(100) NOT NULL,
+	phone VARCHAR(100) NOT NULL,
 	role VARCHAR(100) NOT NULL DEFAULT 'MEMBER' ,
 	reg_day DATETIME NOT NULL DEFAULT current_timestamp(),
 	PRIMARY KEY (no)
@@ -29,12 +29,11 @@ CREATE UNIQUE INDEX idx_cust_info ON cust_info(cust_id);
 
 CREATE TABLE order_list (
 	no INT(11) NOT NULL AUTO_INCREMENT,
-	coffee_no INT(11) NOT NULL,
-	coffee VARCHAR(100) NOT NULL,
+	coffee_name VARCHAR(100) NOT NULL,
 	price INT(11) NOT NULL,
-	cust_id VARCHAR(100) NOT NULL,
-	name VARCHAR(100) NOT NULL,
 	reg_day DATETIME NOT NULL DEFAULT current_timestamp(),
+	coffee_no INT(11) NOT NULL,
+	cust_id VARCHAR(100) NOT NULL,
 	PRIMARY KEY (no)
 )
 COMMENT='주문내역'
@@ -45,12 +44,17 @@ ALTER TABLE order_list
 ADD CONSTRAINT fk_coffee_no
 FOREIGN KEY (coffee_no)
 REFERENCES coffee_menu(no);
+ON DELETE CASCADE
+ON UPDATE CASCADE 
 
 
 ALTER TABLE order_list
 ADD CONSTRAINT fk_cust_id
 FOREIGN KEY (cust_id)
 REFERENCES cust_info(cust_id);
+ADD CONSTRAINT fk_coffee_no
+FOREIGN KEY (coffee_no)
+REFERENCES coffee_menu(coffee_no);
 
 ---------------------------------------------------
 

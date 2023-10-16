@@ -12,13 +12,13 @@ VALUES
 
 -------------------------------------
 
-INSERT INTO cust_info(cust_id,NAME,email,role)
+INSERT INTO cust_info(cust_id,NAME,phone,role)
 VALUES
-('ID1','홍길동','email1@hong.com','MEMBER'),
-('ID2','홍길성','email2@hong.com','MEMBER'),
-('ID3','홍길자','email3@hong.com','MEMBER'),
-('ID4','홍길순','email4@hong.com','MEMBER'),
-('ID5','홍길선','email5@hong.com','MEMBER'),
+('ID1','홍길동','phone1@hong.com','MEMBER'),
+('ID2','홍길성','phone2@hong.com','MEMBER'),
+('ID3','홍길자','phone3@hong.com','MEMBER'),
+('ID4','홍길순','phone4@hong.com','MEMBER'),
+('ID5','홍길선','phone5@hong.com','MEMBER'),
 ('ID6','관리자','admin@hong.com','ADMIN')
 ;
 
