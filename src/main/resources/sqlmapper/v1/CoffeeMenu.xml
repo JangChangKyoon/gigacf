@@ -145,7 +145,7 @@
 
 	</update>
 
-	<!-- Update MultiChecked Price Log(Loop by DynamicSQL, Loop in DB) -->
+	<!-- Update MultiChecked Price "Log"(Loop by DynamicSQL, Loop in DB) -->
 	<insert id="doInsertLogDynamicSQL">
 
 		INSERT INTO coffee_menu_log (coffee_no, price)

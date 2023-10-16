@@ -9,7 +9,7 @@
 
 	<select id="doMemberList"
 		resultType="com.example.gigacf.v1.vo.Cust_info">
-		SELECT no, cust_id, name, email, role,
+		SELECT no, name, phone, role,
 		DATE_FORMAT(reg_day,
 		'%Y.%m.%d') AS reg_day
 		FROM cust_info;
@@ -17,7 +17,7 @@
 
 	<select id="doSearchMember"
 		resultType="com.example.gigacf.v1.vo.Cust_info">
-		SELECT no, cust_id, name, email, role,
+		SELECT no, name, phone, role,
 		DATE_FORMAT(reg_day, '%Y.%m.%d')
 		AS reg_day
 		FROM cust_info
