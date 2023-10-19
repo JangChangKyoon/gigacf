@@ -43,11 +43,7 @@ public class SelectMenuCon {
 		try {
 			// orderList를 받아 처리하는 로직을 여기에 작성합니다.
 
-			// 예시: 받은 데이터를 콘솔에 출력
-			for (Map<String, String> order : orderList) {
-				System.out.println("Received Order: " + order);
-			}
-
+			log.info(orderList);
 			// 클라이언트에게 반환할 JSON 데이터 생성
 			Map<String, String> responseData = createResponseData(); // 이 함수는 클라이언트에게 반환할 JSON 데이터를 생성하는 함수입니다.
 
