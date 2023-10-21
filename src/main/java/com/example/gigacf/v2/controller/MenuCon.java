@@ -1,0 +1,163 @@
+package com.example.gigacf.v2.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import com.example.gigacf.v2.vo.Coffee_menu;
+import com.example.gigacf.v2.service.MenuSvc;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.reflect.MethodDelegate;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.checkerframework.checker.formatter.qual.ReturnsFormat;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller("MenuConV2")
+@RequestMapping("/v2") // common url of prefix
+@Log4j2
+public class MenuCon {
+
+	// DI that is for processing logic
+	@Autowired
+	MenuSvc menuSvc;
+
+
+	// Going Menu page and then Fetching data about menu list
+	@RequestMapping("/menu")
+	// 1. 위 url로 요청이 들어오면 아래 클래스로 데이터를 처리함
+	public String doMenu(Model model) {
+		// Model : 데이터를 html로 보내는 데 도와줌
+
+		// List<Map<String, Object>> list = new MenuSvc().doList();
+		// DI가 아닌 의존성 설정 방법
+		// 객체를 클래스 내에 만들어서 다른 클래스나 클래스의 맴버를 사용하는 방법
+
+		List<Coffee_menu> list = menuSvc.doList();
+		// DI를 통하여 객체를 가저오는 방법
+		// @Service를 설정하면 IOC의 Bean컨테이너에 저장이 되어 프로그램이 실행될 때 객체가 생성되도록 하여 다른 클래스를 사용
+
+		model.addAttribute("list", list);
+		// model로 데이터를 html로 보내기
+
+		// 아래 폴더에 있는 html을 보여준다.
+		return "/v2/menu/menu";
+	}
+
+	// INSERT
+	// ---------------------------------------------------------------------------
+
+	// Switching the menu_page to menu_ins_page
+	@GetMapping("/menu_ins")
+	// /menu_ins : url
+	public String doInsert() {
+		return "/v2/menu/menu_ins";
+		// HTML Path of the Page
+	}
+
+	// Uploading OneRowdata of menu in upload menu page
+	// uploading data of menu that actually get data to be inserted into database
+	@PostMapping("/menu_ins")
+	public String doInsertPost(@ModelAttribute Coffee_menu coffeeMenu) {
+
+		// Processing business logic in MenuSvc_doinsert
+		int i = menuSvc.doInsert(coffeeMenu);
+
+		// Going back to page of menu
+		return "redirect:/v2/menu";
+	}
+
+	// DELETE
+	// ---------------------------------------------------------------------------
+
+	// Delete OneRowData of menu in upload menu page
+	// Delete data of menu from Database
+	@GetMapping("/menu_del")
+	public String doDelete(@RequestParam("no") String strNo) {
+		log.info("strNo : " + strNo);
+		int i = menuSvc.doDelete(strNo);
+		return "redirect:/v2/menu";
+		// Path of html
+	}
+
+	// UPDATE
+	// ---------------------------------------------------------------------------
+
+	// Switching MenuPage to MenuUpdatePage and then Receive strNo from
+	// Url_no(menu_up?no=8)
+	@GetMapping("/menu_up")
+	public String doUpdate(Model model, @RequestParam("no") String strNo) {
+
+		Map<String, Object> map = menuSvc.doListOne(strNo);
+
+		model.addAttribute("map", map);
+
+		return "/v2/menu/menu_up";
+	}
+
+	// Update OnelistRow(coffee, kind, price)
+	@PostMapping("/menu_up")
+	public String doUpdatePost(@ModelAttribute Coffee_menu coffee_menu) {
+		int i = menuSvc.doUpdate(coffee_menu);
+		return "redirect:/v2/menu";
+	}
+
+	// SEARCH
+	// ---------------------------------------------------------------------------
+
+	// Search using condition like "date, kind etc"
+	@PostMapping("/menu_search")
+	public String doSearch(@ModelAttribute Coffee_menu coffee_menu, Model model) {
+		log.info("Search : " + coffee_menu);
+		List<Coffee_menu> list = menuSvc.doSearch(coffee_menu);
+
+		model.addAttribute("list", list);
+
+		log.info("===================Con_search output======================");
+		log.info(list);
+
+		return "/v2/menu/menu";
+
+	}
+
+	// Update the MultiChecked
+	// ---------------------------------------------------------------------------
+
+	// Update multiChecked Price
+	@PostMapping("/menu_updatePrice")
+	public String doUpdatePrice(@RequestParam("chkCoffeeNo") List<String> chkNoList,
+			// thyemeleaf는 List를 바로 Param으로 가져올 수 있다.
+			@RequestParam("hidden_price") String strPrice, Model model) {
+
+		// spring이 반복문이 돌아가는 방식
+		// if (chkNoList != null) {
+		// for (String strNo : chkNoList) {
+		// int int1 = menuSvc.doInsertLog(strNo, strPrice);
+		// int int2 = menuSvc.doUpdatePrice(strNo, strPrice);
+		// }
+		// }
+		
+
+		try { // DB에 반복문이 돌아가게 하는 방식 by dynamicSQL
+			if (chkNoList != null) {
+				//int i1 = menuSvc.doUpdatePriceDynamicSQL(chkNoList, strPrice);
+				//int i2 = menuSvc.doInsertLogDynamicSQL(chkNoList, strPrice);
+				int i1 = menuSvc.doUpdateInsert(chkNoList, strPrice);
+			}
+		} catch (Exception e) {
+			model.addAttribute("em", e.getMessage());
+			return "/v2/comm/ErrorPage";
+		}
+
+		return "redirect:/v2/menu";
+	}
+
+}

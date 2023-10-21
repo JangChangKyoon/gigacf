@@ -1,9 +1,9 @@
-package com.example.gigacf.v1.service;
+package com.example.gigacf.v2.service;
 
 import com.example.gigacf.comm.TransactionSeparationLog;
 import com.example.gigacf.comm.MyExceptionRuntime;
-import com.example.gigacf.v1.vo.Coffee_menu;
-import com.example.gigacf.v1.dao.MenuDaoV1;
+import com.example.gigacf.v2.vo.Coffee_menu;
+import com.example.gigacf.v2.dao.MenuDaoV2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,18 +27,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("MenuSvcV2")
 @Log4j2
 public class MenuSvc {
 	// Di of Dao
 	// Role of Dao : 데이터베이스를 조회하는 통로
 	@Autowired
-	MenuDaoV1 menuDaoV1;
+	MenuDaoV2 menuDao;
+
 	
+	// 메뉴의 목록을 보여주는 로직
 	// 1. Prior Step : MenuCon_doInsert에서 유저로부터 받은 요청을 가져와서 여기서 로직처리
 	public List<Coffee_menu> doList() {
 		// 2. MenuCon_doInsert에서 데이터를 가져올 때는 MenuDao를 통해서 DB에서 데이터를 가져와서 로직처리
-		List<Coffee_menu> list = menuDaoV1.doList();
+		List<Coffee_menu> list = menuDao.doList();
 		log.info(list); 
 		// 3. Following Step : 로직처리가 되면 다시 controller로 보내서 유저에게 보여줌
 		return list;
@@ -91,7 +93,7 @@ public class MenuSvc {
 	public int doInsert(Coffee_menu coffee_menu) {
 		// 2. meuDao : Receive data from view&controller and the give to DB using
 		// menuDao
-		int i = menuDaoV1.doInsert(coffee_menu);
+		int i = menuDao.doInsert(coffee_menu);
 		log.info("------------------con deinsert---------------------");
 		log.info(coffee_menu);
 
@@ -106,7 +108,7 @@ public class MenuSvc {
 	public int doDelete(String strNo) {
 		// 2. Send strNo to Database for the purpose of deleting the data ussing Dao &
 		// sqlmapper
-		int i = menuDaoV1.doDelete(strNo);
+		int i = menuDao.doDelete(strNo);
 		// 3. Following Step : Send result to MenuCon_doDelete back
 		return i;
 	}
@@ -116,12 +118,12 @@ public class MenuSvc {
 
 	// Inquerying oneRow using strNo for Updating One
 	public Map<String, Object> doListOne(String strNo) {
-		Map<String, Object> map = menuDaoV1.doListOne(strNo);
+		Map<String, Object> map = menuDao.doListOne(strNo);
 		return map;
 	}
 
 	public int doUpdate(Coffee_menu coffee_menu) {
-		int i = menuDaoV1.doUpdate(coffee_menu);
+		int i = menuDao.doUpdate(coffee_menu);
 		return i;
 	}
 
@@ -131,7 +133,7 @@ public class MenuSvc {
 	// Search
 	public List<Coffee_menu> doSearch(Coffee_menu coffee_menu) {
 		log.info("MenuSvc :" + coffee_menu);
-		List<Coffee_menu> list = menuDaoV1.doSearch(coffee_menu);
+		List<Coffee_menu> list = menuDao.doSearch(coffee_menu);
 		return list;
 	}
 
@@ -140,25 +142,25 @@ public class MenuSvc {
 
 	// Update mutichecked price(loof in spring, Not Used)
 	public int doUpdatePrice(String strNo, String strPrice) {
-		int i = menuDaoV1.doUpdatePrice(strNo, strPrice);
+		int i = menuDao.doUpdatePrice(strNo, strPrice);
 		return i;
 	}
 
 	// Update multichecked price log(loof in spring, Not Used)
 	public int doInsertLog(String strNo, String strPrice) {
-		int i = menuDaoV1.doInsertLog(strNo, strPrice);
+		int i = menuDao.doInsertLog(strNo, strPrice);
 		return i;
 	}
 
 	// Update mutichecked price(loof in DB by dynamicSQL, Not Used)
 	public int doUpdatePriceDynamicSQL(List<String> chkNoList, String strPrice) {
-		int i = menuDaoV1.doUpdatePriceDynamicSQL(chkNoList, strPrice);
+		int i = menuDao.doUpdatePriceDynamicSQL(chkNoList, strPrice);
 		return i;
 	}
 
 	// Update multichecked price log(loof in DB by dynamicSQL, Not Used)
 	public int doInsertLogDynamicSQL(List<String> chkNoList, String strPrice) {
-		int i = menuDaoV1.doInsertLogDynamicSQL(chkNoList, strPrice);
+		int i = menuDao.doInsertLogDynamicSQL(chkNoList, strPrice);
 		return i;
 
 	}
@@ -192,7 +194,7 @@ public class MenuSvc {
 				
 				@Override
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
-					int i1 = menuDaoV1.doUpdatePriceDynamicSQL(chkNoList, strPrice);
+					int i1 = menuDao.doUpdatePriceDynamicSQL(chkNoList, strPrice);
 					//status.isRollbackOnly();
 					
 				}
@@ -201,7 +203,7 @@ public class MenuSvc {
 			// transactionTemplate으로 트랜젝션 관리
 			// return이 있는 경우 : 람다를 사용
 			rI = transactionTemplate.execute(status -> {
-				int i2 = menuDaoV1.doInsertLogDynamicSQL(chkNoList, strPrice);
+				int i2 = menuDao.doInsertLogDynamicSQL(chkNoList, strPrice);
 				status.setRollbackOnly(); //로그기록은 꺼둠
 				return i2;
 			});

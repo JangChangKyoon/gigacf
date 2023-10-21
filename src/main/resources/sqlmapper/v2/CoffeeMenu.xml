@@ -6,12 +6,12 @@
 <!-- Usage of This XML : Accessing the Database -->
 
 <!-- Location of DAO / DB조회한 결과를 보낼 경로 -->
-<mapper namespace="com.example.gigacf.v1.dao.MenuDaoV1">
+<mapper namespace="com.example.gigacf.v2.dao.MenuDaoV2">
 
 	<!-- Inquery of database -->
 	<!-- id : Method from MeneDao / resultType : 데이터 타입 -->
 	<select id="doList"
-		resultType="com.example.gigacf.v1.vo.Coffee_menu">
+		resultType="com.example.gigacf.v2.vo.Coffee_menu">
 		SELECT no, coffee, kind, price,
 		DATE_FORMAT(reg_day,
 		'%Y.%m.%d') AS reg_day,
@@ -67,7 +67,7 @@
 	</delete>
 
 	<!-- Search -->
-	<select id="doSearch" resultType="com.example.gigacf.v1.vo.Coffee_menu">
+	<select id="doSearch" resultType="com.example.gigacf.v2.vo.Coffee_menu">
 		SELECT no, coffee, kind, price,
 		DATE_FORMAT(reg_day, '%Y.%m.%d') AS
 		reg_day,

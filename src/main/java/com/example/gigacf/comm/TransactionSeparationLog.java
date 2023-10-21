@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.gigacf.v1.dao.MenuDao;
+import com.example.gigacf.v1.dao.MenuDaoV1;
 
 // 트렌젝션 분리용 class 
 @Service
@@ -14,7 +14,7 @@ import com.example.gigacf.v1.dao.MenuDao;
 public class TransactionSeparationLog {
 
 	@Autowired
-	MenuDao menuDao;
+	MenuDaoV1 menuDao;
 	
 	public int doTransactionSeparationLog(String strClass) {
 		int i = menuDao.doTransactionSeparationLog(strClass);

@@ -1,17 +1,17 @@
-package com.example.gigacf.v1.dao;
+package com.example.gigacf.v2.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.gigacf.v1.vo.Coffee_menu;
+import com.example.gigacf.v2.vo.Coffee_menu;
 
 import java.util.List;
 import java.util.Map;
 
 // For the Purpose of accessing the Database using Sqlmapper.xml 
-// resources/sqlmapper/v1CoffeeMenu.xml의 sql문으로 DB에서 데이터를 가져와서 여기로 보낸다.
+// resources/sqlmapper/v2CoffeeMenu.xml의 sql문으로 DB에서 데이터를 가져와서 여기로 보낸다.
 @Mapper
-public interface MenuDao {
+public interface MenuDaoV2 {
 
 	// 메뉴 조회하기
 	// From MenuSvc_doList

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+       <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} %-5level --- [%thread] %logger[%method:%line] - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <!--  -->
+    
+    <!-- Application Loggers -->
+    <logger name="com.example.gigacf" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+    
+    <!-- *추가* -->
+    <!-- Query Loggers -->
+     <logger name="jdbc.sqlonly" additivity="false"> 
+       <level value="info"/>
+       <appender-ref ref="consoleAppender"/>
+     </logger>
+         
+     <logger name="jdbc.resultsettable" additivity="false"> 
+       <level value="info"/>
+       <appender-ref ref="consoleAppender"/>
+     </logger>
+     <!--  -->
+    
+    <!-- 3rdparty Loggers -->
+    <logger level="debug" name="org.springframework.core">
+        
+    </logger>
+    
+    <logger level="debug" name="org.springframework.beans">
+       
+    </logger>
+    
+    <logger name="org.springframework.context">
+        <level value="info" />
+    </logger>
+ 
+    <logger name="org.springframework.web">
+        <level value="info" />
+    </logger>
+ 
+    <!-- Root Logger -->
+    <root>
+        <priority value="off" />
+        <appender-ref ref="consoleAppender" />
+    </root>
+
+</configuration>
