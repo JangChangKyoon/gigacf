@@ -76,7 +76,7 @@ html, body, #app {
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <a class="button is-primary" href="/v2/user/register/step1">
             <strong>Sign up</strong>
           </a>
           <a class="button is-light">
