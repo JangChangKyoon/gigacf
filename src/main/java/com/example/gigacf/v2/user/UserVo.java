@@ -9,21 +9,16 @@ import lombok.Setter;
 @Setter
 public class UserVo {
 	
-	private String id;
-
+	private String no;
     private String name;
-
-    private String password;
-
-    private String passwordConfirm;
- 
-    private String email;
-
     private String phone;
-    
     private UserRole role;
-    
+    private String password;
+    private String email;
 	private String reg_day;
-	
 	private String mod_day;
+	
+	public boolean matchPassword(String password) {
+		return this.password.equals(password);
+	}
 }

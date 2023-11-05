@@ -23,7 +23,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-6">
-				<form:form role="form" modelAttribute="registerRequest" action="/v2/user/register/step3"
+				<form:form role="form" modelAttribute="registerVo" action="/v2/user/register/step3"
 					id="step3Form" method="post"
 				>
 					<div class="form-group input-group">

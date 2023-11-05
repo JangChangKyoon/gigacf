@@ -3,8 +3,13 @@ package com.example.gigacf.v2.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import com.example.gigacf.v2.vo.Coffee_menu;
 import com.example.gigacf.v2.service.MenuSvc;
+import com.example.gigacf.v2.user.UserRole;
+import com.example.gigacf.v2.user.login.LoginSessionVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.reflect.MethodDelegate;
@@ -58,7 +63,7 @@ public class MenuCon {
 	// Switching the menu_page to menu_ins_page
 	@GetMapping("/menu_ins")
 	// /menu_ins : url
-	public String doInsert() {
+	public String doInsert() {		
 		return "/v2/menu/menu_ins";
 		// HTML Path of the Page
 	}

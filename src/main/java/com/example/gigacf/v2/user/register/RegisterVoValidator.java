@@ -1,4 +1,4 @@
-package com.example.gigacf.v2.user;
+package com.example.gigacf.v2.user.register;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,14 +16,14 @@ import org.springframework.validation.Validator;
  * 5. validate 메소드가 RegisterRequest 객체에 저장된 값들을 꺼내와서 유효성 검사함.
  * */
 
-public class RegisterRequestValidator implements Validator {
+public class RegisterVoValidator implements Validator {
 
 	private static final String EMAILREGEXP = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String PHONEREGEXP = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 	private Pattern emailPattern;
 	private Pattern phonePattern;
-	public RegisterRequestValidator() {
+	public RegisterVoValidator() {
 		emailPattern = Pattern.compile(EMAILREGEXP);
 		phonePattern = Pattern.compile(PHONEREGEXP);
 	}
@@ -35,7 +35,7 @@ public class RegisterRequestValidator implements Validator {
 	 **/
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return RegisterRequest.class.isAssignableFrom(clazz);
+		return RegisterVo.class.isAssignableFrom(clazz);
 	}
 	
 	/** 2단계 
@@ -48,24 +48,24 @@ public class RegisterRequestValidator implements Validator {
 		// 1. Spring MVC가 parameter로 등로온 정보를 가지고 registerRequest(domain)의 객체를 만들고 필드를
 		// setting 해줌
 		// ※ target은 parameter로 받아온 formdata를 binding한 것
-		RegisterRequest registerRequest = (RegisterRequest) target;
+		RegisterVo registerVo = (RegisterVo) target;
 
 		// 2. formdata를 통해 등록된 registerRequest의 필드의 유효성을 검사 로직
 		// 1) phone 검증
-		if (registerRequest.getPhone() == null || registerRequest.getPhone().trim().isEmpty()) {
+		if (registerVo.getPhone() == null || registerVo.getPhone().trim().isEmpty()) {
 			errors.rejectValue("phone", "required", "필수 정보입니다.");
 		} else {
-			Matcher matcher = phonePattern.matcher(registerRequest.getPhone());
+			Matcher matcher = phonePattern.matcher(registerVo.getPhone());
 			if (!matcher.matches()) {
 				errors.rejectValue("phone", "bad", "올바르지 않은 형식입니다.");
 			}
 		}
 
 		// 2) email 검증
-		if (registerRequest.getEmail() == null || registerRequest.getEmail().trim().isEmpty()) {
+		if (registerVo.getEmail() == null || registerVo.getEmail().trim().isEmpty()) {
 			errors.rejectValue("email", "required", "필수 정보입니다.");
 		} else {
-			Matcher matcher = emailPattern.matcher(registerRequest.getEmail());
+			Matcher matcher = emailPattern.matcher(registerVo.getEmail());
 			if (!matcher.matches()) {
 				errors.rejectValue("email", "bad", "올바르지 않은 형식입니다^^;");
 			}
@@ -77,8 +77,8 @@ public class RegisterRequestValidator implements Validator {
 		// 4) password 검증
 		ValidationUtils.rejectIfEmpty(errors, "password", "required", "필수 정보임..!");
 		ValidationUtils.rejectIfEmpty(errors, "passwordConfirm", "required", "필수 정보임..!");
-		if (!registerRequest.getPassword().isEmpty()) {
-			if (!registerRequest.isPwEqualToCheckPw()) {
+		if (!registerVo.getPassword().isEmpty()) {
+			if (!registerVo.isPwEqualToCheckPw()) {
 				errors.rejectValue("passwordConfirm", "nomatch", "비번 미일치");
 			}
 		}
