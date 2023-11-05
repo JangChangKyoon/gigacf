@@ -6,6 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.gigacf.comm.exception.AlreadyExistingEmailException;
 import com.example.gigacf.comm.exception.AlreadyExistingPhoneException;
+import com.example.gigacf.comm.exception.NotExistingPhoneException;
+import com.example.gigacf.comm.exception.NotMatchingPasswordException;
+import com.example.gigacf.v2.user.login.LoginSessionVo;
+import com.example.gigacf.v2.user.login.LoginVo;
+import com.example.gigacf.v2.user.register.RegisterVo;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -24,23 +29,38 @@ public class UserServiceImpl implements UserService {
 	 * - Spring에서 지원
 	 * - 객체의 타입이 일치하는지를 찾고 객체를 자동으로 주입
 	 * - @Qualifier name을 설정해 줄 수 있다. 
-	 * @Autowired @Qualifier("m1") private UserDao userDao;
 	 */
+	 //@Autowired @Qualifier("m1") private UserDao userDao;
 
+
+	/*회원가입*/
 	@Override
-	public void register(RegisterRequest registerRequest) throws Exception {
+	public void register(RegisterVo registerVo) throws Exception {
 
 		// 이메일 중복 확인
-		UserVo email = userDao.selectByEmail(registerRequest.getEmail());
+		UserVo email = userDao.selectByEmail(registerVo.getEmail());
 		if (email != null) {
-			throw new AlreadyExistingEmailException(registerRequest.getEmail() + " Already Existing");
+			throw new AlreadyExistingEmailException(registerVo.getEmail() + " Already Existing");
 		}
 
-		UserVo phone = userDao.selectById(registerRequest.getPhone());
+		UserVo phone = userDao.selectByPhone(registerVo.getPhone());
 		if (phone != null) {
-			throw new AlreadyExistingPhoneException(registerRequest.getPhone() + " Already Existing");
+			throw new AlreadyExistingPhoneException(registerVo.getPhone() + " Already Existing");
 		}
 
-		userDao.insertUser(registerRequest);
+		userDao.insertUser(registerVo);
+	}
+	
+	/*로그인*/
+	@Override
+	public LoginSessionVo login(LoginVo loginVo) throws Exception {
+		UserVo user = userDao.selectByPhone_entireOneRow(loginVo.getPhone());
+		if(user == null) {
+			throw new NotExistingPhoneException("휴대폰이 존재하지 않습니다");
+		}
+		if(!user.matchPassword(loginVo.getPassword())) {
+			throw new NotMatchingPasswordException("비밀번호가 일치하지 않습니다");
+		}
+		return new LoginSessionVo(user.getPhone(), user.getEmail(), user.getRole());
 	}
 }

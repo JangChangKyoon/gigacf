@@ -3,6 +3,7 @@ package com.example.gigacf.v2.user;
 import org.springframework.stereotype.Repository;
 
 import com.example.gigacf.comm.AbstractDAO;
+import com.example.gigacf.v2.user.register.RegisterVo;
 
 /**
  ** DAO 설정(feat @Repository)
@@ -26,11 +27,16 @@ public class UserDao extends AbstractDAO {
 		return (UserVo) selectOne("user.selectByEmail", email);
 	}
 
-	
-	public UserVo selectById(String phone) { return
+	// 용도 : 회원가입시 phone 중복 확인용 조회
+	public UserVo selectByPhone(String phone) { return
 	(UserVo)selectOne("user.selectByPhone", phone); }
 	
-	public void insertUser(RegisterRequest registerRequest) {
+	// 용도 : 회원등록
+	public void insertUser(RegisterVo registerRequest) {
 		insert("user.register", registerRequest);
 	}
+	
+	// 용도 : 로그인 할 때 유효성 검사할 user 정보 가져오기
+	public UserVo selectByPhone_entireOneRow(String phone) { return
+	(UserVo)selectOne("user.selectByPhone_entireOneRow", phone); }
 }

@@ -75,17 +75,55 @@ html, body, #app {
 
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary" href="/v2/user/register/step1">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+        <div class="buttons"  id="buttonsContainer">          
         </div>
       </div>
     </div>
   </div>
 </nav>
 </body>
+
+<script>
+
+//SessionCookie의 값이 있나 없나 확인
+function getCookieValue(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
+
+    for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+    return "";
+}
+
+
+// myidentifyLoginCookie의 값이 있냐 없냐에 따라서 login버튼과 logout버튼이 상황에 따라 출력되도록함.
+function createButtons() {
+	var myidentifyLoginCookie= getCookieValue("identifyLoginCookie");
+	console.log("Value of the 'identifyLoginCookie': " + myidentifyLoginCookie);
+
+    var buttonsContainer = document.getElementById('buttonsContainer');
+    var buttonsHTML = '';
+
+    if (myidentifyLoginCookie) {
+        buttonsHTML += '<a class="button is-primary" href="/v2/user/login/logout">Logout</a>';
+    } else {
+        buttonsHTML += '<a class="button is-primary" href="/v2/user/register/step1"><strong>Sign up</strong></a>';
+        buttonsHTML += '<a class="button is-light" href="/v2/user/login/loginForm">Log in</a>';
+    }
+
+    buttonsContainer.innerHTML = buttonsHTML;
+}
+
+// Call the function to create buttons when the document is ready
+// DOMContentLoaded : the initial HTML document has been completely loaded and parsed 
+// without waiting for stylesheets, images, and subframes to finish loading.
+document.addEventListener('DOMContentLoaded', createButtons);
+window.addEventListener('load', createButtons);
+</script>
+
 </html>
