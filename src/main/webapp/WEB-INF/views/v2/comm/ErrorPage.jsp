@@ -12,13 +12,14 @@
 <body>
 
 	<!-- 헤더 위치 -->
-		<%@include file="/WEB-INF/views/v2/comm/header.jsp"%>
+	<%@include file="/WEB-INF/views/v2/comm/header.jsp"%>
 
 	<div id="main" style="font-size:large; alignment: center; padding: 10px 50px ">
-		<p>
-			오류 메세지 : <label th:text="${em}"></label>
-		</p>
+<%
+String errorMessage = (String) request.getAttribute("error");
+ %>
 
+<p>errorMessage: <%= errorMessage %></p> 
 	</div>
 
 

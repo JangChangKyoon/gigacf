@@ -1,8 +1,8 @@
 package com.example.gigacf.v1.service;
 
-import com.example.gigacf.comm.TransactionSeparationLog;
-import com.example.gigacf.comm.MyExceptionRuntime;
+
 import com.example.gigacf.v1.vo.Coffee_menu;
+import com.example.gigacf.comm.exception.MyExceptionRuntime;
 import com.example.gigacf.v1.dao.MenuDaoV1;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +27,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 @Service
 @Log4j2
 public class MenuSvc {
 	// Di of Dao
 	// Role of Dao : 데이터베이스를 조회하는 통로
-	@Autowired
+	@Resource(name="menuDaoV1")
 	MenuDaoV1 menuDaoV1;
 	
 	// 1. Prior Step : MenuCon_doInsert에서 유저로부터 받은 요청을 가져와서 여기서 로직처리

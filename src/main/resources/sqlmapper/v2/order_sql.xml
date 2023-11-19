@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+<mapper namespace="order" >   
+
+	<!-- Admin 화면 order List -->
+	<select id="selectList" resultType="com.example.gigacf.v2.order.OrderVo">
+		SELECT no, coffee_no, coffee_name, coffee_price, cust_id, cust_name, 
+			   DATE_FORMAT(reg_day, '%Y.%m.%d') AS reg_day
+		FROM order_list
+	</select>
+	
+	<!-- Admin 화면 order search List -->
+	<select id="searchList" resultType="com.example.gigacf.v2.order.OrderVo">
+		SELECT no, coffee_no, coffee_name, coffee_price, cust_id, cust_name, 
+			   DATE_FORMAT(reg_day, '%Y.%m.%d') AS reg_day
+		FROM order_list
+		WHERE 1=1
+			<![CDATA[
+				AND reg_day >= DATE_FORMAT(#{start_date}, '%Y%m%d')
+				AND reg_day < DATE_ADD(DATE_FORMAT(#{end_date}, '%Y.%m.%d'), INTERVAL +1 DAY)
+			]]>
+			<if test="coffee_name != 'NULL'">
+				AND coffee_name like CONCAT(#{coffee_name}, '%')
+			</if>
+			<if test="cust_name != 'NULL'">
+				AND cust_name like CONCAT(#{cust_name}, '%')
+			</if>
+	</select>
+	
+	<!-- Cust 화면 order search List -->
+	<select id="selectList_cust" resultType="com.example.gigacf.v2.menu.MenuVo">
+		SELECT no, coffee, kind, price,
+			DATE_FORMAT(mod_day, '%Y%m%d') AS mod_day
+		FROM coffee_menu
+	</select>
+	
+	<insert id="insertList">
+		INSERT 
+			INTO order_list(coffee_name, coffee_price, cust_name, coffee_no, cust_id)
+			VALUES 
+				<foreach item="item" index="index" collection="coffeeNoList" separator="," nullable="true">
+					(
+						(SELECT coffee FROM coffee_menu WHERE no=#{item}),
+						(SELECT price FROM coffee_menu WHERE no=#{item}),
+						(SELECT name FROM cust_info WHERE no=1),
+						#{item},
+						1
+					)
+				</foreach>
+	</insert>
+
+</mapper>     

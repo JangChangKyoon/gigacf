@@ -1,0 +1,19 @@
+package com.example.gigacf.v2.vo;
+
+import lombok.Data;
+
+@Data
+public class Coffee_menu {
+
+	private String no;
+	private String coffee = "All";
+	private String kind;
+	private String price;
+	private String reg_day;
+	private String mod_day;
+	
+	// View를 통해 들어와서 DB 날짜 조회하는 용도
+	private String start_date;
+	private String end_date;
+
+}

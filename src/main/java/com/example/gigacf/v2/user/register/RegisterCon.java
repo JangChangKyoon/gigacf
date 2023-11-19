@@ -6,9 +6,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.example.gigacf.comm.exception.AlreadyExistingEmailException;
-import com.example.gigacf.comm.exception.AlreadyExistingPhoneException;
+
+import com.example.gigacf.comm.exception.customException.*;
 import com.example.gigacf.v2.user.UserService;
+import com.example.gigacf.v2.user.UserServiceImpl;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -18,8 +19,8 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/v2/user")
 public class RegisterCon {
 	
-	@Resource(name = "userService")
-	private UserService userService;
+	@Resource(name = "UserServiceImpl")
+	private UserServiceImpl userServceImpl;
 
 	
 	/* 1. 약관동의 페이지 */
@@ -66,7 +67,7 @@ public class RegisterCon {
 
 		// 중복검사
 		try {
-			userService.register(registerVo);
+			userServceImpl.register(registerVo);
 			// 1. 이메일 중복검사
 		} catch (AlreadyExistingEmailException e) {
 			errors.rejectValue("email", "duplicate", "이미 이메일이 있는거야");

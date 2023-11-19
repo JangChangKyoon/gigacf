@@ -1,0 +1,88 @@
+package com.example.gigacf.comm.filter;
+
+import java.io.IOException;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
+
+import lombok.extern.log4j.Log4j2;
+
+/** 배경지식 : 필터
+ * 1. 의의 : 공통된 작업 수행을 위해서 사용되며, 로그인 여부를 확인 혹은 character encoding 등으로 주로 사용됨
+ * 2. 작동위치 : WAS -> "Filter" -> Servlet -> Interceptor -> Controller
+ * 3. 인터셉터와 비교 : 필터는 서블릿쪽 기술이며, 인터셉터는 스프링쪽 기술임. 따라서 인터센터는 스프링의 기술이 적용될 수 있음.
+ * */
+
+/**
+ * 이 클래스의 역할 : 로그인 확인 필터 Menu와 Member의 메뉴에 진입하려고 하면, login 화면으로 이동하는 기능
+ */
+@WebFilter(urlPatterns = { "/v2/menu/*", "/v2/member/*" }) // 해당 경로에 대하여 filtering
+@Log4j2
+public class LoginCheckFilter implements Filter {
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		log.info("FirstFilter가 생성 됩니다.");
+	}
+
+	@Override
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, // doFilter의 파라미터에는
+																							// Servlet(HttpServlet ⨉)을
+																							// 사용하여야함
+			FilterChain filterChain // FilterChain : 서블릿을 실행시켜줌
+	) throws IOException, ServletException {
+
+		log.info("🤡🤡🤡🤡Login Check filter excuted🤡🤡🤡🤡");
+
+		/**
+		 * HttpServlet 객체 불러오기 파라미터의 서블릿을 가져와 다운 캐스트 하여 HttpServlet 객체 불러오기
+		 */
+		HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+
+		/**
+		 * 세션정보 조회하여 후처리 1. httpServletRequest 객체에서 세션 불러와서 세션이 있는지 확인하고 세션이 없다면 login
+		 * 페이지로 리다이렉트하기 2. 로그인하여 생성하였던 쿠키가 있다면 체크해서 삭제해주기
+		 */
+		try {
+			HttpSession httpSession = httpServletRequest.getSession(false); // 세션 객체를 불러옴(이미 존재하는 세션이 없다면 세션을 생성하지 않음.)
+			if (httpSession.getAttribute("loginSessionVo") == null) {
+				Cookie[] requestCookies = httpServletRequest.getCookies(); // 세션이 없으면 Html 로그인버튼 설정을 위해 브라우저에 저장된 쿠키
+																			// 삭제하기
+				if (requestCookies != null) {
+					for (Cookie cookie : requestCookies) {
+						if ("identifyLoginCookie".equals(cookie.getName())) {
+							log.info("identifyLoginCookie will be deleted... : " + cookie.getName());
+							cookie.setMaxAge(0);
+							cookie.setPath("/v2");
+							httpServletResponse.addCookie(cookie);
+							break;
+						}
+					}
+				}
+				httpServletResponse.sendRedirect("/v2/user/login/loginForm");
+
+				return;
+			}
+		} catch (RuntimeException e) {
+			httpServletResponse.sendRedirect("/v2/user/login/loginForm");
+
+			return;
+		}
+
+		/* 다음 필터나 목적지(서블릿, JSP)로 갈 수 있도록 doFilter 설정하기 */
+		filterChain.doFilter(servletRequest, servletResponse);
+	}
+
+	@Override
+	public void destroy() {
+		log.info("FirstFilter가 사라집니다.");
+	}
+
+}

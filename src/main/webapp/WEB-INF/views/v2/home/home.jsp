@@ -29,7 +29,7 @@
 				<li>CSS : BULMA</li>
 			</ul>
 			
-			<h5 style="margin-top:20px" class="subtitle is-3"><a  href="selectmenu">주문판 바로가기</a></h5>
+			<h5 style="margin-top:20px" class="subtitle is-3"><a  href="customerOrder/menu_List">주문판 바로가기</a></h5>
 			<a style="width:100%" href="selectmenu" ><img src="https://afar.brightspotcdn.com/dims4/default/7604c95/2147483647/strip/true/crop/3352x2472+0+0/resize/1440x1062!/quality/90/?url=https%3A%2F%2Fafar-media-production-web.s3.us-west-2.amazonaws.com%2Fbrightspot%2F1c%2Fe5%2F61ebf7126f34371d599273331f41%2Foriginal-australian-20coffee.jpg"> </a>
 		</div>
 

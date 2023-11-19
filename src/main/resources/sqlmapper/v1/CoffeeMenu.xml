@@ -69,31 +69,27 @@
 	<!-- Search -->
 	<select id="doSearch" resultType="com.example.gigacf.v1.vo.Coffee_menu">
 		SELECT no, coffee, kind, price,
-		DATE_FORMAT(reg_day, '%Y.%m.%d') AS
-		reg_day,
-		DATE_FORMAT(mod_day, '%Y.%m.%d') AS mod_day
+			DATE_FORMAT(reg_day, '%Y.%m.%d') AS reg_day,
+			DATE_FORMAT(mod_day, '%Y.%m.%d') AS mod_day
 		FROM coffee_menu
 		WHERE 1=1
 		<!-- 1=1은 항상 참이므로 아무런 영향을 미치지 않고 모든 조건을 추가 -->
-		AND reg_day >= COALESCE(DATE_FORMAT(#{start_date}, '%Y%m%d'),
-		'19000101')
-		<!-- AND : 다중 조건 -->
-		AND reg_day &lt; COALESCE(DATE_ADD(DATE_FORMAT(#{end_date},
-		'%Y%m%d'),
-		INTERVAL
-		+1 DAY), 30000101)
-		<!-- &lt; 는 < 을 의미함 -->
-		<!-- DATE_ADD 함수를 사용하여 strEndDate에 날짜에대한 연산 -->
-		<!-- INTERVAL 키워드는 날짜나 시간을 더하거나 빼는 데 사용 -->
-		<if test="coffee != 'ALL'">
-			<!-- ALL이 아니면 아래 value를 줘라, 아래 조건을 무시하라 -->
-			AND coffee like CONCAT(#{coffee},'%')
-		</if>
-		<!-- concat 두 개의 문자열을 연결 -->
-		<!-- LIKE 연산자는 특정 패턴을 가진 문자열을 검색 -->
-		<!-- '%'을 사용하여 특정 문자열로 시작하는 경우를 검색 -->
-		AND (#{kind} = 'ALL' OR kind = #{kind})
-		<!-- 이 경우 순수 sql문으로 위 <if>과 동일한 기능이 있다. -->
+			AND reg_day >= COALESCE(DATE_FORMAT(#{start_date}, '%Y%m%d'),
+			'19000101')
+			<!-- AND : 다중 조건 -->
+			AND reg_day &lt; COALESCE(DATE_ADD(DATE_FORMAT(#{end_date}, '%Y%m%d'), INTERVAL +1 DAY), 30000101)
+			<!-- &lt; 는 < 을 의미함 -->
+			<!-- DATE_ADD 함수를 사용하여 strEndDate에 날짜에대한 연산 -->
+			<!-- INTERVAL 키워드는 날짜나 시간을 더하거나 빼는 데 사용 -->
+			<if test="coffee != 'ALL'">
+				<!-- ALL이 아니면 아래 value를 줘라, 아래 조건을 무시하라 -->
+				AND coffee like CONCAT(#{coffee},'%')
+			</if>
+			<!-- concat 두 개의 문자열을 연결 -->
+			<!-- LIKE 연산자는 특정 패턴을 가진 문자열을 검색 -->
+			<!-- '%'을 사용하여 특정 문자열로 시작하는 경우를 검색 -->
+			AND (#{kind} = 'ALL' OR kind = #{kind})
+			<!-- 이 경우 순수 sql문으로 위 <if>과 동일한 기능이 있다. -->
 
 	</select>
 

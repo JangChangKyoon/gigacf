@@ -2,17 +2,22 @@ package com.example.gigacf.v1.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import com.example.gigacf.v1.vo.Coffee_menu;
 
 import java.util.List;
 import java.util.Map;
 
+
 // For the Purpose of accessing the Database using Sqlmapper.xml 
 // resources/sqlmapper/v1CoffeeMenu.xml의 sql문으로 DB에서 데이터를 가져와서 여기로 보낸다.
 @Mapper
+@Component("menuDaoV1")
 public interface MenuDaoV1 {
 
+	
+	
 	// 메뉴 조회하기
 	// From MenuSvc_doList
 	List<Coffee_menu> doList();
@@ -55,4 +60,6 @@ public interface MenuDaoV1 {
 	
 	// 트랜젝션 분리 실험용 (MenuSvc UpdateInsert 매소드의 finally에 적용됨. 
 	int doTransactionSeparationLog(@Param("strClass") String strClass);
+	
+	
 }

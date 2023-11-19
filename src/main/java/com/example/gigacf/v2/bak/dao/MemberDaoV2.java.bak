@@ -1,0 +1,14 @@
+package com.example.gigacf.v2.member;
+
+import java.util.List;
+
+
+
+@Repository
+public interface MemberDaoV2 {
+
+	List<Cust_info> doMemberList();
+
+	List<Cust_info> doSearchMember(Cust_info member_list);
+
+}

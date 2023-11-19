@@ -20,7 +20,7 @@ public class RegisterVoValidator implements Validator {
 
 	private static final String EMAILREGEXP = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private static final String PHONEREGEXP = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
+	private static final String PHONEREGEXP = "^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})+$";
 	private Pattern emailPattern;
 	private Pattern phonePattern;
 	public RegisterVoValidator() {

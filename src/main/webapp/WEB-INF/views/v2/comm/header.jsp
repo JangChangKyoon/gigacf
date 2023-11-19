@@ -33,20 +33,23 @@ html, body, #app {
       <img src="https://back.3blmedia.com/sites/default/files/client_content/original_csrwire/GIGA_logo.jpg" width="112" height="28">
     </a>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <!-- 햄버거 아이콘 -->
+   <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="true" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
+
+    
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/v2/menu">
+      <a class="navbar-item" href="/v2/menu/menu_list">
         Menu
       </a>
 
-      <a class="navbar-item" href="/v2/order">
+      <a class="navbar-item" href="/v2/adminOrder/order_list">
         Order
       </a>
 
@@ -56,7 +59,7 @@ html, body, #app {
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="/v2/member">
+          <a class="navbar-item" href="/v2/member/member_list">
             Member
           </a>
           <a class="navbar-item">

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.gigacf.comm.exception.NotExistingPhoneException;
-import com.example.gigacf.comm.exception.NotMatchingPasswordException;
+import com.example.gigacf.comm.exception.customException.NotExistingPhoneException;
+import com.example.gigacf.comm.exception.customException.NotMatchingPasswordException;
 import com.example.gigacf.v2.user.UserService;
+import com.example.gigacf.v2.user.UserServiceImpl;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -27,8 +29,8 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/v2/user/login")
 public class LoginCon {
 
-	@Resource(name = "userService")
-	private UserService userServce;
+	@Resource(name = "UserServiceImpl")
+	private UserServiceImpl userServceImpl;
 
 	/** 로그인 페이지 이동
 	 * + 아이디 저장 쿠키가 있는지 확인해서 input value 자동 채우기 기능
@@ -66,7 +68,7 @@ public class LoginCon {
 		try {
 			/** 세션 사용 */
 			log.info("------Session Creation--------");
-			loginSessionVo = userServce.login(loginVo);
+			loginSessionVo = userServceImpl.login(loginVo);
 		    HttpSession httpSession = httpServletRequest.getSession(); // 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
 			httpSession.setAttribute("loginSessionVo", loginSessionVo);  // 세션에 로그인 회원 정보 보관
 			httpSession.getAttributeNames().asIterator().forEachRemaining(name -> log.info("session name={}, value={}", name, httpSession.getAttribute(name))); // 세션 정보

@@ -1,8 +1,10 @@
 package com.example.gigacf.v2.user;
 
+import java.sql.SQLException;
+
 import org.springframework.stereotype.Repository;
 
-import com.example.gigacf.comm.AbstractDAO;
+import com.example.gigacf.v2.common.commonLogics.AbstractDAO;
 import com.example.gigacf.v2.user.register.RegisterVo;
 
 /**
@@ -14,8 +16,9 @@ import com.example.gigacf.v2.user.register.RegisterVo;
  * 이 밖에도 아래처럼 Mapper.xml의 namespace를 먼저 지정하고, selectOne("user.selectByEmail", email)처럼 augument를 지정하여 접근 할 수 있음.
  * */
 @Repository("userDao") // 서비스에 DI 주입할 때 사용할 이름 지정
-public class UserDao extends AbstractDAO {
-	public UserVo selectByEmail(String email) {
+public class UserDao extends AbstractDAO<UserVo> {
+	
+	public UserVo selectByEmail(String email)  {
 		/** return문 분석
 		 * 1. selectOne은 AbstractDAO에서 상속받은 메소드를 사용한 것 
 		 * 2. Augument 설명 
@@ -24,12 +27,12 @@ public class UserDao extends AbstractDAO {
 		 * - 위 두개의 일종의 주소를 통해서 email값을 퀴리로 전달해 준다.
 		 * - interface(@Mapper사용)의 경우와 mapper.xml과 연결하는 방식이 상이하다. 
 		 */
-		return (UserVo) selectOne("user.selectByEmail", email);
+		return selectOne("user.selectByEmail", email);
 	}
 
 	// 용도 : 회원가입시 phone 중복 확인용 조회
-	public UserVo selectByPhone(String phone) { return
-	(UserVo)selectOne("user.selectByPhone", phone); }
+	public UserVo selectByPhone(String phone) {
+	   return selectOne("user.selectByPhone", phone); }
 	
 	// 용도 : 회원등록
 	public void insertUser(RegisterVo registerRequest) {
@@ -37,6 +40,6 @@ public class UserDao extends AbstractDAO {
 	}
 	
 	// 용도 : 로그인 할 때 유효성 검사할 user 정보 가져오기
-	public UserVo selectByPhone_entireOneRow(String phone) { return
-	(UserVo)selectOne("user.selectByPhone_entireOneRow", phone); }
+	public  UserVo selectByPhone_entireOneRow(String phone) { 
+	 return selectOne("user.selectByPhone_entireOneRow", phone); }
 }

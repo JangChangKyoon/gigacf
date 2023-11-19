@@ -22,7 +22,7 @@
 			style="height: 300px;padding: 15px; font-size: small; width: 90%; margin-left: auto;  margin-right: auto;">
 			
 			</h3>
-			<form name="fm_menu_ins" autocomplete="on" action="/v2/menu_ins" method="post">
+			<form name="fm_menu_ins" autocomplete="on" action="/v2/menu/menu_ins" method="post">
 				<fieldset style="display:flex; flex-direction:column; align-items:center;gap:10px;">
 				
 					<!--Location of Input-->

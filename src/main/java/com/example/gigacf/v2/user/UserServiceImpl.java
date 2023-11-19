@@ -4,15 +4,12 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.example.gigacf.comm.exception.AlreadyExistingEmailException;
-import com.example.gigacf.comm.exception.AlreadyExistingPhoneException;
-import com.example.gigacf.comm.exception.NotExistingPhoneException;
-import com.example.gigacf.comm.exception.NotMatchingPasswordException;
+import com.example.gigacf.comm.exception.customException.*;
 import com.example.gigacf.v2.user.login.LoginSessionVo;
 import com.example.gigacf.v2.user.login.LoginVo;
 import com.example.gigacf.v2.user.register.RegisterVo;
 
-@Service("userService")
+@Service("UserServiceImpl")
 public class UserServiceImpl implements UserService {
 
 	/* @Resource
