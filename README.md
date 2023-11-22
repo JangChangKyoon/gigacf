@@ -2,4 +2,4 @@
 
 ##reference : bullma
 
-##implemented : function Interceptor ..
+##implemented : function Interceptor, filter, session login
