@@ -45,5 +45,17 @@
     </tr>
   </tbody>
 </table>
+
+ <br>
+  <br>  
+  
+##주문화면  
+![image](https://github.com/JangChangKyoon/gigacf/assets/58103130/ecc52ee0-8008-4b16-ab8f-a4ebf83bed0f)
+##주문관리화면  
+![image](https://github.com/JangChangKyoon/gigacf/assets/58103130/0397a181-851b-4b70-96ef-f237b228b85d)
+![image](https://github.com/JangChangKyoon/gigacf/assets/58103130/efb2a77d-466c-4394-bcde-489c1b6a9efc)
+![image](https://github.com/JangChangKyoon/gigacf/assets/58103130/d29a4a4f-12e2-4685-9e51-2634e8eb9c28)
+![image](https://github.com/JangChangKyoon/gigacf/assets/58103130/b02b23da-724a-43a0-8f4b-c36b023c4a9b)
+![image](https://github.com/JangChangKyoon/gigacf/assets/58103130/65dbf515-cd10-4485-a5f6-14d405f7c0dc)  
   
 </div>
