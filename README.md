@@ -1,5 +1,5 @@
 ## Wave <a id="wave">
-![GigaCafe](https://capsule-render.vercel.app/api?type=GigaCafe&color=auto&height=200&text=WAVE)
+![Wave](https://capsule-render.vercel.app/api?type=GigaCafe&color=auto&height=200&text=WAVE)
 
 
 <p align='center'> Coffee Order Site </p>
@@ -26,6 +26,7 @@
   <img src="https://img.shields.io/badge/MyBatis-4479A1?style=for-the-badge&logo=MyBatis&logoColor=white">
   <br>
   
+  <br>
   <table>
   <thead align="center">
     <tr border: none;>
