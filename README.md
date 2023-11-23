@@ -1,10 +1,3 @@
-##Stack : Mybatis MariaDB JSP Vanilla javascript
-
-##reference : bullma
-
-##implemented : function Interceptor, filter, session login
-
-
 ## Wave <a id="wave">
 ![GigaCafe](https://capsule-render.vercel.app/api?type=GigaCafe&color=auto&height=200&text=WAVE)
 
@@ -32,5 +25,24 @@
   <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
   <img src="https://img.shields.io/badge/MyBatis-4479A1?style=for-the-badge&logo=MyBatis&logoColor=white">
   <br>
+  
+  <table>
+  <thead align="center">
+    <tr border: none;>
+      <td><b>🎁 Version</b></td>
+      <td><b>📬 Description</b></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V1</td>
+      <td>게시판 수정, 삭제 등록, 다중 수정 구현 with Thymeleaf</td>
+    </tr>
+    <tr>
+      <td>V2</td>
+      <td>주문 등록, 세션로그인, 인터셉터, 필터 구현</td>
+    </tr>
+  </tbody>
+</table>
   
 </div>
