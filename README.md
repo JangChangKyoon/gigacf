@@ -1,5 +1,5 @@
 ## Wave <a id="wave">
-![Wave](https://capsule-render.vercel.app/api?type=GigaCafe&color=auto&height=200&text=WAVE)
+![Wave](https://capsule-render.vercel.app/api?type=Wave&color=auto&height=200&text=WAVE)
 
 
 <p align='center'> Coffee Order Site </p>
