@@ -5,9 +5,9 @@
 ##implemented : function Interceptor, filter, session login
 
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=GigaCafe&fontSize=90&animation=fadeIn&fontAlignY=38&desc=Decorate%20GitHub%20Profile%20or%20any%20Repo%20like%20me!&descAlignY=51&descAlign=62)
+![wave](https://capsule-render.vercel.app/api?type=GigaCafe&color=auto&height=200&text=WAVE)
 
-<p align='center'> coffee order site </p>
+<p align='center'> Coffee Order Site </p>
 
  
 
@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
   <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white">
   <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
-> 
+
   <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
   <br>
   
@@ -28,6 +28,7 @@
   <br>
   
   <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
+  <img src="https://img.shields.io/badge/MyBatis-4479A1?style=for-the-badge&logo=MyBatis&logoColor=white">
   <br>
   
 </div>
