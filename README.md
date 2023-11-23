@@ -1,9 +1,9 @@
 ## Wave <a id="wave">
-![Wave](https://capsule-render.vercel.app/api?type=Wave&color=auto&height=200&text=WAVE)
+![커피주문웹](https://capsule-render.vercel.app/api?type=Wave&color=auto&height=200&text=WAVE)
 
 
 <p align='center'> Coffee Order Site </p>
-
+<br>
  
 
 <div align=center><h1>📚 STACKS</h1></div>
